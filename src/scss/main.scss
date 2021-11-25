@@ -1,78 +1,12 @@
 @import "./utils/variables";
+@import "./layouts/misc";
+@import "./layouts/header";
+@import "./layouts/question";
+@import "./layouts/noquestion";
 @import "./layouts/magic-ball";
+@import "./layouts/footer";
 
 
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-      sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+
   
-  code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-      monospace;
-  }
-  
-p, h2{
-    margin:0;
-}
-
-
-  header{
-    padding: 20px;
-    margin-bottom:0;
-    background: $b-gradient;
-    & h1{
-        height:fit-content;
-        font-size : 60px;
-        margin:0;
-    }   
-    & img {
-        height:fit-content;
-    }
-    & h2{
-      text-align: center;
-      font-style: italic;
-    }
-  }
-
-  footer{
-      padding : 100px 0;
-      height:300px;
-      background-color: $b-color1;
-  }
-  
-  .header-first-part{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .question{
-    margin: 0;
-    padding: 150px;
-    text-align: center;
-    font-size: 40px;
-    font-weight:900;
-    color:white;
-    background-color: $b-color1;
-    & button {
-      font-size : 40px;
-      margin : 10px;
-      box-shadow: 3px 3px 5px 5px black;
-    }
-  }
-
-
-  .noquestion-container{
-    padding:150px;
-    text-align: center;
-    color:white;
-    background-color: $b-color1;
-    font-size: 40px;
-    font-weight:900;
-  }
   

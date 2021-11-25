@@ -1,0 +1,24 @@
+header{
+    padding: 20px;
+    margin-bottom:0;
+    background: $b-gradient;
+    & h1{
+        height:fit-content;
+        font-size : 60px;
+        margin:0;
+    }   
+    & img {
+        height:fit-content;
+    }
+    & h2{
+      text-align: center;
+      font-style: italic;
+    }
+  }
+
+  
+  .header-first-part{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+  }
