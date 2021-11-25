@@ -12,50 +12,59 @@ const getRandomNumber = (min, max) => {
 }
 
 function Main(){
-    const[visibleQuestion, setVisibleQuestion] = React.useState({display:'block'});
-    const[visibleMagicBall, setVisibleMagicBall] = React.useState({display:'none', backgroundColor:'red'});
-  
-    console.log(visibleMagicBall);
-  
+    
     function handleClickYes(){
-      setVisibleQuestion({display:'none'})
-      setVisibleMagicBall({display:'block'})
+      document.getElementsByClassName("first-question")[0].style.display='none'
+      document.getElementsByClassName("ball-form")[0].style.display='block'
     }
   
     function handleClickNo(){
-      setVisibleQuestion({display:'none'})
+        document.getElementsByClassName("first-question")[0].style.display='none'
       document.getElementsByClassName("noquestion-container")[0].style.display='block'
     }
   
     function handleGoBack(){
         document.getElementsByClassName("noquestion-container")[0].style.display='none'
-        setVisibleQuestion({display:'block'})
+        document.getElementsByClassName("first-question")[0].style.display='block'
     }
+
+    const[ballAnswer, setBallAnswer] = React.useState('');
+    const[askedQuestion, setAskedQuestion] = React.useState('')
+
+    function showQuestion(question){
+        setAskedQuestion(question)
+    }
+
+    function showAnswer(){
+        setBallAnswer(possibleAnswers[getRandomNumber(0, possibleAnswers.length-1)])
+        document.getElementsByClassName("number-eight")[0].style.animation="number-rotate 1s 1s forwards";
+        document.getElementsByClassName("answer")[0].style.animation="answer-rotate 1s 2s forwards";
+    }
+  
 
     return(
       <main>
-        <Question yesButton={handleClickYes} noButton= {handleClickNo} style={visibleQuestion}></Question>
-        <MagicBall style={visibleMagicBall}></MagicBall>
+        <FirstQuestion yesButton={handleClickYes} noButton= {handleClickNo}></FirstQuestion>
+        <SecondQuestion showAnswer={showAnswer} rememberQuestion={showQuestion}></SecondQuestion>
+        <MagicBall yourQuestion={askedQuestion} answer={ballAnswer}></MagicBall>
         <NoQuestion goBack={handleGoBack}></NoQuestion>
       </main>
     )
   }
   
-  function Question({yesButton, noButton, style}){
+  function FirstQuestion({yesButton, noButton}){
     return(
-      <div className="question" style={style}>
+      <div className="first-question">
           <h2>Vous avez une question, non ?</h2>
           <button onClick={yesButton}>Oui</button>
           <button onClick={noButton}>Non</button>
       </div>
       )
   }
-  
-  function MagicBall({style}){
-  
+
+  function SecondQuestion({showAnswer, rememberQuestion}){
     const [question, setQuestion] = React.useState('')
     const [error, setError] = React.useState()
-    const answer = possibleAnswers[getRandomNumber(0, possibleAnswers.length-1)]
   
     const handleChange = event => {
       setQuestion(event.target.value)
@@ -65,24 +74,32 @@ function Main(){
       event.preventDefault()
       if(question.startsWith("Boule magique")){
         setError(null)
-        document.getElementsByClassName("number-eight")[0].style.animation="number-rotate 1s forwards";
-        document.getElementsByClassName("answer")[0].style.animation="answer-rotate 1s 1s forwards";
+        document.getElementsByClassName("ball-container")[0].style.display='block'
+        document.getElementsByClassName("ball-form")[0].style.display='none'
         document.getElementById("ball-question").setAttribute("disabled", "true")
+        showAnswer()
+        rememberQuestion(question)
       }
       else
         setError(`Votre question doit commencer par 'Boule magique'`)
     }
   
-    return(
-      <div className="ball-container"style={style}>
-        <form className="ball-form" onSubmit={handleSubmit}>
-          <label htmlFor="ball-question">Posez votre question ici : <br/>
-             (exemple : "Boule magique, vais-je devenir un mega super expert React avec ce Bootcamp ?") <br/> 
-             Ce doit être une question fermée (on doit pouvoir y répondre par oui ou non) <br/>
-             Appuyez sur 'Entrée' pour valider</label>
-          <input type="text" id="ball-question"  value={question} onChange={handleChange}></input>
-          <div style={{color:'red'}}>{error}</div>
+      return(
+        <form className="ball-form" style={{display:'none'}}onSubmit={handleSubmit}>
+            <label htmlFor="ball-question">Posez votre question ici : <br/>
+            (exemple : "Boule magique, vais-je devenir un mega super expert React avec ce Bootcamp ?") <br/> 
+            Ce doit être une question fermée (on doit pouvoir y répondre par oui ou non) <br/>
+            Appuyez sur 'Entrée' pour valider <br/></label>
+            <input type="text" id="ball-question"  value={question} onChange={handleChange}></input>
+            <div style={{color:'red'}}>{error}</div>
         </form>
+      )
+  }
+  
+  function MagicBall({yourQuestion,answer}){
+    return(
+      <div className="ball-container" style={{display:'none'}}>
+        <p className='asked-question'>Votre question : "{yourQuestion}"</p>
         <div className="magic-ball" >
             <div className="answer">{answer}</div>
             <div className="number-eight">8</div>
@@ -95,7 +112,7 @@ function Main(){
     return(
     <div className="noquestion-container" style={{display:'none'}}>
       <p>Ah, bon bah...ok, j'ai rien dit.</p>
-      <p class="go-back-link" onClick={goBack}>(Êtes-vous vraiment sûr ?)</p>
+      <p className="go-back-link" onClick={goBack}>(Êtes-vous vraiment sûr ?)</p>
     </div>
     )
   }
