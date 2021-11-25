@@ -27,7 +27,8 @@
   text-align: center;
   width: fit-content;
   margin:auto;
-  padding:20px;
+  padding:10px;
+  border:2px inset black;
 }
 
 
@@ -99,4 +100,13 @@
     background-color: white;
     border-radius:100%;
     font-size : 150px;
+}
+
+.another-question{
+  font-size:30px;
+  color:white;
+  text-align: center;
+  cursor:pointer;
+  width:fit-content;
+  margin: 50px auto auto auto;
 }
