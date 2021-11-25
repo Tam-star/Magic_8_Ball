@@ -27,11 +27,16 @@ function Main(){
       document.getElementsByClassName("noquestion-container")[0].style.display='block'
     }
   
+    function handleGoBack(){
+        document.getElementsByClassName("noquestion-container")[0].style.display='none'
+        setVisibleQuestion({display:'block'})
+    }
+
     return(
       <main>
         <Question yesButton={handleClickYes} noButton= {handleClickNo} style={visibleQuestion}></Question>
         <MagicBall style={visibleMagicBall}></MagicBall>
-        <NoQuestion></NoQuestion>
+        <NoQuestion goBack={handleGoBack}></NoQuestion>
       </main>
     )
   }
@@ -86,10 +91,11 @@ function Main(){
     )
   }
   
-  function NoQuestion(){
+  function NoQuestion({goBack}){
     return(
     <div className="noquestion-container" style={{display:'none'}}>
       <p>Ah, bon bah...ok, j'ai rien dit.</p>
+      <p class="go-back-link" onClick={goBack}>(Êtes-vous vraiment sûr ?)</p>
     </div>
     )
   }

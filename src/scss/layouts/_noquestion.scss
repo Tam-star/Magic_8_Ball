@@ -1,6 +1,6 @@
 
   .noquestion-container{
-    padding:150px;
+    padding:180px;
     text-align: center;
     color:white;
     background-color: $b-color1;
@@ -8,3 +8,10 @@
     font-weight:900;
   }
   
+  .go-back-link{
+    margin-top:20px;
+    font-size: 16px;
+    font-weight: normal;
+    color:white;
+    cursor:pointer;
+  }
