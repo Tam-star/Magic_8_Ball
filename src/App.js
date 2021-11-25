@@ -76,8 +76,31 @@ function Question({buttonFct, style}){
 }
 
 function MagicBall({style}){
+
+  const [question, setQuestion] = React.useState('')
+  const [error, setError] = React.useState()
+
+  const handleChange = event => {
+    setQuestion(event.target.value)
+  }
+
+  const handleSubmit = event => {
+    event.preventDefault()
+    if(question.startsWith("Boule magique"))
+      alert(`Votre question est ${question}`)
+    else
+      setError(`Votre question doit commencer par 'Boule magique'`)
+  }
+
   return(
     <div style={style}>
+      <form className="ball-form" onSubmit={handleSubmit}>
+        <label htmlFor="ball-question">Posez votre question ici : (exemple : "Boule magique, vais-je avoir une promotion ?") <br/> 
+           Ce doit être une question fermée (on doit pouvoir y répondre par oui ou non) <br/>
+           Appuyez sur 'Entrée' pour valider</label>
+        <input type="text" id="ball-question" value={question} onChange={handleChange}></input>
+        <div style={{color:'red'}}>{error}</div>
+      </form>
       <div className="magic-ball" >
           <div className="answer">Impossible</div>
           <div className="number-eight">8</div>
