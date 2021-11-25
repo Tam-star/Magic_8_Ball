@@ -86,8 +86,12 @@ function MagicBall({style}){
 
   const handleSubmit = event => {
     event.preventDefault()
-    if(question.startsWith("Boule magique"))
-      alert(`Votre question est ${question}`)
+    if(question.startsWith("Boule magique")){
+      setError(null)
+      document.getElementsByClassName("number-eight")[0].style.animation="number-rotate 1s forwards";
+      document.getElementsByClassName("answer")[0].style.animation="answer-rotate 1s 1s forwards";
+      document.getElementById("ball-question").setAttribute("disabled", "true")
+    }
     else
       setError(`Votre question doit commencer par 'Boule magique'`)
   }
@@ -98,7 +102,7 @@ function MagicBall({style}){
         <label htmlFor="ball-question">Posez votre question ici : (exemple : "Boule magique, vais-je avoir une promotion ?") <br/> 
            Ce doit être une question fermée (on doit pouvoir y répondre par oui ou non) <br/>
            Appuyez sur 'Entrée' pour valider</label>
-        <input type="text" id="ball-question" value={question} onChange={handleChange}></input>
+        <input type="text" id="ball-question"  value={question} onChange={handleChange}></input>
         <div style={{color:'red'}}>{error}</div>
       </form>
       <div className="magic-ball" >
