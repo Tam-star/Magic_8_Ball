@@ -1,3 +1,4 @@
+@import "./utils/variables";
 @import "./layouts/magic-ball";
 
 
@@ -23,7 +24,7 @@ p, h2{
   header{
     padding: 20px;
     margin-bottom:0;
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(219,168,109,1) 30%, rgba(188,133,133,1) 65%, rgba(0,0,0,1) 100%);
+    background: $b-gradient;
     & h1{
         height:fit-content;
         font-size : 60px;
@@ -40,7 +41,8 @@ p, h2{
 
   footer{
       padding : 100px 0;
-      background-color: lightgreen;
+      height:300px;
+      background-color: $b-color1;
   }
   
   .header-first-part{
@@ -56,7 +58,7 @@ p, h2{
     font-size: 40px;
     font-weight:900;
     color:white;
-    background-color: rgb(48, 48, 48);
+    background-color: $b-color1;
     & button {
       font-size : 40px;
       margin : 10px;
@@ -65,18 +67,12 @@ p, h2{
   }
 
 
-  
-
-  // form{
-  //   width:100%;
-  //   display:flex;
-  //   flex-direction: column;
-  //   justify-content: center;
-  //   align-items: center;
-  //   margin-top:50px;
-  // }
-  
-  // form input{
-  //   width:200px;
-  // }
+  .noquestion-container{
+    padding:150px;
+    text-align: center;
+    color:white;
+    background-color: $b-color1;
+    font-size: 40px;
+    font-weight:900;
+  }
   

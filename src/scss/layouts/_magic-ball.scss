@@ -20,6 +20,11 @@
   }
 }
 
+.ball-container{
+  padding-bottom:100px;
+  background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(219,168,109,1) 30%, rgba(188,133,133,1) 65%, rgba(0,0,0,1) 100%);
+}
+
 
 .ball-form{
     text-align: center;
@@ -95,7 +100,11 @@
     border-radius: 100%;
     background-color:white;
     text-align: center;
-    line-height: 140px;
+    font-weight:bold;
+    font-size : 20px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .number-eight{
